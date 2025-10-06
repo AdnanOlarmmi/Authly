@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: authly-postgres
+    environment:
+      POSTGRES_DB: authly # What should the database be called?
+      POSTGRES_USER: authly_user # What username do you want?
+      POSTGRES_PASSWORD: dev_password # What password? (simple for dev)
+    ports:
+      - "5432:5432" # What port on your computer maps to 5432 in container?
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # This saves data when container stops
+
+  redis:
+    image: redis:7
+    container_name: authly-redis
+    ports:
+      - "6379:6379" # What port on your computer maps to 6379 in container?
+
+volumes:
+  postgres_data: # This creates the storage for PostgreSQL data
